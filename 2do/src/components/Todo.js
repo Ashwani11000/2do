@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 
 class Todo extends Component {
-    markComplete=(e)=> {
-        console.log("Hello")
-    }
+    
 
     render()
   {
@@ -14,7 +12,7 @@ class Todo extends Component {
     return this.props.todos.map((todo)=>(
         <h3>
             <TodoItem key= {todo.id} td= {todo} markComplete=
-            {this.markComplete}/> 
+            {this.props.markComplete}/> 
             {/* key= {todo.id} prevents the child error without key error*/}
             
         </h3>
