@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 
 
 class Todo extends Component {
-  render()
+    markComplete=(e)=> {
+        console.log("Hello")
+    }
+
+    render()
   {
     //console.log(this.props.todos);
     return this.props.todos.map((todo)=>(
         <h3>
-            <TodoItem key= {todo.id} td= {todo}/> 
+            <TodoItem key= {todo.id} td= {todo} markComplete=
+            {this.markComplete}/> 
             {/* key= {todo.id} prevents the child error without key error*/}
             
         </h3>
