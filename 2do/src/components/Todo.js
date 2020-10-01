@@ -12,7 +12,7 @@ class Todo extends Component {
     return this.props.todos.map((todo)=>(
         <h3>
             <TodoItem key= {todo.id} td= {todo} markComplete=
-            {this.props.markComplete}/> 
+            {this.props.markComplete} delTodo = {this.props.delTodo}/> 
             {/* key= {todo.id} prevents the child error without key error*/}
             
         </h3>
