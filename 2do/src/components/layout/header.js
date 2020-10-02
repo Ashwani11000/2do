@@ -12,7 +12,7 @@ function Header(){
             <h1>
                 TodoList 
             </h1>
-            <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
+            <Link style={linkStyle} to="/2do">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
             
         </header>
     )
