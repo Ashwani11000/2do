@@ -1,75 +1,87 @@
-import React, {Component} from 'react';
-import './App.css';
-import Todo from './components/Todo';
-import Header from './components/layout/header';
-import AddTodo from './components/AddTodo';
-import { v4 as uuid} from 'uuid';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
+import Todo from "./components/Todo";
+import Header from "./components/layout/header";
+import AddTodo from "./components/AddTodo";
+import { v4 as uuid } from "uuid";
+import About from './components/pages/About';
 
 class App extends Component {
-
   state = {
     todos: [
       {
         id: uuid(),
-        title: 'Take out the trash',
-        completed: false
+        title: "Take out the trash",
+        completed: false,
       },
       {
         id: uuid(),
-        title: 'Work on project',
-        completed: false
+        title: "Work on project",
+        completed: false,
       },
       {
         id: uuid(),
-        title: 'React Crash Course',
-        completed: false
-      }
-    ]
-  }
-// Toggle the completed property.
-  markComplete=(id)=> {
+        title: "React Crash Course",
+        completed: false,
+      },
+    ],
+  };
+  // Toggle the completed property.
+  markComplete = (id) => {
     // console.log(id)
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if(todo.id === id){
-        todo.completed= !todo.completed;
-      }
-      return todo;
-    })});
-  }
-
-
-  delTodo= (id)=>{
-
-    this.setState({ todos: [...this.state.todos.filter
-      (todo=> todo.id!== id)]
-
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      }),
     });
-  }
+  };
 
-AddTodo= (title)=>{
-  const newTodo={
-        id: uuid(),
-        title,
-        completed: false
+  delTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+    });
+  };
+
+  AddTodo = (title) => {
+    const newTodo = {
+      id: uuid(),
+      title,
+      completed: false,
+    };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
+  render() {
+    // console.log(this.state.todos);
+    return (
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route
+            exact
+              path="/"
+              render={(props) => (
+                <React.Fragment>
+                  <AddTodo AddTodo={this.AddTodo} />
+                  <Todo
+                    todos={this.state.todos}
+                    markComplete={this.markComplete}
+                    delTodo={this.delTodo}
+                  />
+                </React.Fragment>
+              )}
+            />
+
+            <Route path="/about" exact component={About}/>
+          </div>
+        </div>
+      </Router>
+    );
   }
-  this.setState({todos: [...this.state.todos,newTodo]})
-}
-  render(){
-  // console.log(this.state.todos);
-  return (
-    <div className="App">
-      <div className="container">
-      <Header/>
-      <AddTodo AddTodo={this.AddTodo}/>
-      <Todo todos={this.state.todos} 
-      markComplete={this.markComplete}
-      delTodo = {this.delTodo}
-      />
-      </div>
-    </div>
-    
-  );
-}
 }
 
 export default App;
