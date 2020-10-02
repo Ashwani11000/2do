@@ -12,17 +12,17 @@ class App extends Component {
     todos: [
       {
         id: uuid(),
-        title: "Take out the trash",
+        title: "Workout",
         completed: false,
       },
       {
         id: uuid(),
-        title: "Work on project",
+        title: "Read a Novel",
         completed: false,
       },
       {
         id: uuid(),
-        title: "React Crash Course",
+        title: "Project work",
         completed: false,
       },
     ],
